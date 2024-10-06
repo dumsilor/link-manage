@@ -1,0 +1,4 @@
+<div class="container">
+    <app-title title="Tool List"></app-title>
+    <tool *ngFor="let tool of tools" [name]="tool.name" [url]="tool.url" [userName]="tool.userName" [password]="tool.password"></tool>
+</div>
