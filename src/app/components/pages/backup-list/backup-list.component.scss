@@ -1,0 +1,47 @@
+@import './../../../shared/scss/colors.scss';
+
+table {
+    margin-left: 1rem;
+}
+
+table, tr, td {
+    border-collapse: collapse;
+    border: none;
+}
+
+th{
+    color: $txt-heading-color;
+    font-size: 1.5rem;
+}
+
+tbody tr {
+    transition: all 0.3s 
+}
+
+tbody tr:hover {
+    transform: scale(1.03);
+    background-color: $hover-color;
+    border-collapse: collapse;
+    border: none;
+}
+
+td:first-child{
+    border-radius: 1rem 0rem 0rem 1rem;
+}
+
+td:last-child{
+    border-radius: 0rem 1rem 1rem 0rem;
+}
+
+
+td {
+    padding: 1rem;
+}
+
+a{
+    text-decoration: none;
+}
+
+.copyName:hover {
+    cursor: pointer;
+}

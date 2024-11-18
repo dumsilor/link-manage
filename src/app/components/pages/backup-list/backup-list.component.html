@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="table">
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        Project name
+                    </th>
+                    <th>
+                        backup volume
+                    </th>
+                    <th>Copy Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let backup of backupVolumes">
+                    <td><a target="_blank" [href]=backup.projectURL>{{backup.projectName}}</a></td>
+                    <td><a target="_blank" [href]=backup.volumeURL>{{backup.volumeName}}</a></td>
+                    <td class="copyName" #copy (click)="copyName(copy)">{{backup.volumeName}}-{{currentDate | date: 'dd-MM-YYYY'}}-Cloud</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

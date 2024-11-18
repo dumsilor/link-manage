@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "./app/shared/scss/colors.scss";
-
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 *{
     box-sizing: border-box;
 }
@@ -9,4 +9,8 @@ body {
     margin: 0;
     background: $bg-color;
     font-size: 16px;
+    font-family: "DM Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
 }
