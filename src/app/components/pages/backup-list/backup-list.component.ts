@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren, viewChildren } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { BackupService } from './backup-list.service';
 import { Backup } from '../../../shared/model/backup.model';
 import { CommonModule } from '@angular/common';
@@ -26,5 +26,8 @@ export class BackupListComponent implements OnInit{
     navigator.clipboard.writeText(this.innerHTML).then(()=>{
       console.log("Copied")
     }).catch(err=>console.log(err))
+  }
+  onReset() {
+
   }
 }

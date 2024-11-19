@@ -1,4 +1,7 @@
 <div class="container">
+    <div class="title">
+        <h2>Backup List</h2>
+    </div>
     <div class="table">
         <table>
             <thead>
@@ -10,6 +13,7 @@
                         backup volume
                     </th>
                     <th>Copy Name</th>
+                    <th><button (click)="onReset()">reset</button></th>
                 </tr>
             </thead>
             <tbody>
@@ -17,6 +21,7 @@
                     <td><a target="_blank" [href]=backup.projectURL>{{backup.projectName}}</a></td>
                     <td><a target="_blank" [href]=backup.volumeURL>{{backup.volumeName}}</a></td>
                     <td class="copyName" #copy (click)="copyName(copy)">{{backup.volumeName}}-{{currentDate | date: 'dd-MM-YYYY'}}-Cloud</td>
+                    <td class="input"><input type="checkbox" name="status" id="status" /></td>
                 </tr>
             </tbody>
         </table>
