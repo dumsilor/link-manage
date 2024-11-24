@@ -1,22 +1,2 @@
-<div class="container">
-    <table>
-        <thead>
-            <tr>
-                <th>Sr.</th>
-                <th>Date</th>
-                <th>Details</th>
-                <th>Reference</th>
-                <th>Personnel</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Issue Count + 1</td>
-                <td>Date Of the Issue</td>
-                <td>Details of the issue</td>
-                <td>Mail or bcp reference of the issue</td>
-                <td>Personnel Name</td>
-            </tr>        
-        </tbody>
-    </table>
-</div>
+<page-title title="Shift Update"></page-title>
+<app-table  [tableHeaders]="tableHeaderList" [rowDataList]="updateDataList"></app-table>

@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="table">
+        <table>
+            <thead>
+                <tr>
+                    <th *ngFor="let tableHeader of tableHeaders">{{tableHeader}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let rowData of rowDataList; let i = index" (click)="toggleRow(i)">
+                    <td *ngFor="let field_name of tableHeaders">{{ rowData[field_name] | shorten:getRowNumber(i) }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
