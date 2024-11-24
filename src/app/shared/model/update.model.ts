@@ -1,7 +1,9 @@
 export class Update{
     id!: string;
     date!: string;
-    detail!: string;
-    ref!: string;
+    details!: string;
+    remarks!: string;
+    Sales_Concern!: string;
+    reference!: string;
     handler!: string;
 }

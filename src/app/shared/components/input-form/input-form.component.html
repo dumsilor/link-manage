@@ -1,1 +1,18 @@
-<p>input-form works!</p>
+<div class="container">
+    <div class="form" [ngClass]="{'hidden': !isFormVisible}">
+        <form #inputForm="ngForm" (submit)="onSubmit(inputForm)">
+            <div class="form-container">
+                <div class="control" *ngFor="let field of fields">
+                    <label [for]="field">{{field}}</label>
+                    <input class="form-control" type="text" [id]="field" [name]="field"  [(ngModel)]="formData[field]" [placeholder]="'enter '+field" required>
+                </div>
+                <div class="btn">
+                    <button [disabled]="inputForm.invalid">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="toggle" (click)="toggleForm()">
+        <h1><i class="bi bi-plus-circle-fill"></i></h1>
+    </div>
+</div>
