@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
-import { Update } from '../../model/update.model';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ShortenPipe } from '../../pipe/shorten.pipe';
 
 interface RowData {
@@ -18,6 +17,9 @@ export class TableComponent {
 @Input() 
 @Input() tableHeaders: string[] = ['demo1','demo2','demo3']
 @Input() rowDataList!: any[];
+@Output() complete: EventEmitter<string> = new EventEmitter<string>()
+@Output() delete: EventEmitter<boolean> = new EventEmitter<boolean>()
+
 
 expandRowIndex: number | null = null;
 
@@ -27,6 +29,14 @@ toggleRow(index: number){
 
 getRowNumber(index: number): number {
   return this.expandRowIndex === index ? 15000 : 75;
+}
+
+onComplete() {
+ this.complete.emit("Complete")
+}
+
+onDelete() {
+  this.delete.emit(true)
 }
 
 }
