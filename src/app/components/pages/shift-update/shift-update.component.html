@@ -1,3 +1,4 @@
 <page-title title="Shift Update"></page-title>
-<app-input-form [fields]="tableHeaderList"></app-input-form>
+<app-input-form [fields]="tableHeaderList" (formValues)="addUpdate($event)"
+(clicked)="onClick()"></app-input-form>
 <app-table  [tableHeaders]="tableHeaderList" [rowDataList]="updateDataList" (complete)="completeTask($event)" (delete)="deleteTask($event)"></app-table>

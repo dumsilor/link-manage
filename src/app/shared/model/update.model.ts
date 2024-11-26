@@ -1,9 +1,11 @@
 export class Update{
     id!: string;
-    date!: string;
-    details!: string;
-    remarks!: string;
+    Date!: string;
+    Details!: string;
+    Remarks!: string;
     Sales_Concern!: string;
-    reference!: string;
-    handler!: string;
+    Reference!: string;
+    Handler!: string;
+    Status!: string;
+    deleted!: Boolean;
 }

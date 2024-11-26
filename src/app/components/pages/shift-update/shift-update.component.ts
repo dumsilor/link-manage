@@ -1,10 +1,11 @@
-import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+
 import { TableComponent } from '../../../shared/components/table/table.component';
 import { UpdateService } from './update.service';
 import { TitleComponent } from '../../../shared/components/title/title.component';
-import { ShortenPipe } from '../../../shared/pipe/shorten.pipe';
 import { InputFormComponent } from "../../../shared/components/input-form/input-form.component";
-import { BehaviorSubject } from 'rxjs';
+import { Update } from '../../../shared/model/update.model';
 
 @Component({
   selector: 'app-shift-update',
@@ -14,24 +15,40 @@ import { BehaviorSubject } from 'rxjs';
   styleUrl: './shift-update.component.scss',
   providers: [UpdateService]
 })
-export class ShiftUpdateComponent implements OnInit {
+export class ShiftUpdateComponent implements OnInit, OnDestroy {
   tableHeaderList = ['Date','Details','Remarks','Sales','Reference','Handler', 'Status']
-  updateDataList: any[] = [];
-
+  updateDataList: Update[] = [];
+  updateListSubscription!: Subscription;
 
 
   constructor(private updateService: UpdateService) {}
 
   ngOnInit(): void {
-      this.updateDataList = this.updateService.allUpdate;
+       this.updateListSubscription = this.updateService.allUpdate().subscribe((update)=>{
+        this.updateDataList = update;
+        console.log(this.updateDataList.keys)
+       });
       console.log(this.completeTask)
   }
 
+  ngOnDestroy(): void {
+    this.updateListSubscription.unsubscribe();
+  }
+
   completeTask(event: string) {
-    console.log(event)
+    //
   }
 
   deleteTask(event: boolean) {
+    //
+  }
 
+  addUpdate(newUpdate:any){
+  this.updateService.addUpdate(newUpdate);
+  }
+  onClick(){
+    this.updateService.allUpdate().subscribe((update)=>{
+      this.updateDataList = update;
+    })
   }
 }

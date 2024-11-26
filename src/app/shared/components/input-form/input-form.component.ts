@@ -14,11 +14,16 @@ export class InputFormComponent {
   @Output() formValues: EventEmitter<{}> = new EventEmitter<{}>();
   formData: {[key: string]: string} = {}
   @Input() isFormVisible: boolean = false;
+  @Output() clicked: EventEmitter<void> = new EventEmitter<void>()
 
   onSubmit(formData: NgForm){
     this.formValues.emit(formData.value)
   }
   toggleForm() {
     this.isFormVisible = !this.isFormVisible;
+  }
+
+  onClick(){
+    this.clicked.emit()
   }
 }

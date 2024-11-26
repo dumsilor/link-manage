@@ -7,7 +7,7 @@
                     <input class="form-control" type="text" [id]="field" [name]="field"  [(ngModel)]="formData[field]" [placeholder]="'enter '+field" required>
                 </div>
                 <div class="btn">
-                    <button [disabled]="inputForm.invalid">Submit</button>
+                    <button [disabled]="inputForm.invalid" (click)="onClick()">Submit</button>
                 </div>
             </div>
         </form>

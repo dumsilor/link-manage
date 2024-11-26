@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BackupService } from './backup-list.service';
 import { Backup } from '../../../shared/model/backup.model';
 import { CommonModule } from '@angular/common';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-backup-list',
@@ -11,14 +12,21 @@ import { CommonModule } from '@angular/common';
   styleUrl: './backup-list.component.scss',
   providers: [BackupService]
 })
-export class BackupListComponent implements OnInit{
+export class BackupListComponent implements OnInit, OnDestroy{
   backupVolumes: Backup[] = []
   currentDate = new Date();
   innerHTML!: string;
+  backupVolumesSubscription!: Subscription;
   constructor(private backupService: BackupService) {}
 
   ngOnInit(): void {
-      this.backupVolumes = this.backupService.allBackups;
+      this.backupVolumesSubscription = this.backupService.allBackups().subscribe((volumes)=>{
+        this.backupVolumes = volumes;
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.backupVolumesSubscription.unsubscribe();
   }
 
   copyName(copyName: HTMLTableCellElement){

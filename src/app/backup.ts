@@ -130,5 +130,17 @@ export const vols = [
         projectURL: "http://118.67.215.11/dashboard/auth/switch/e21290ae6e9845ddacb7158ba1d35867/?next=/dashboard/project/",
         volumeName: "Owncloud-Intercloud-VM-01-Vol-02-SAS",
         volumeURL: "http://118.67.215.11/dashboard/project/volumes/7dde4fc3-7a0e-4a5d-bca8-12fe6832d8d5/"
-    }
+    },
+    {
+        projectName: "Revenue-Assurance",
+        projectURL: "http://118.67.215.11/dashboard/auth/switch/344358e7b22049a0bff2ac785417ab4e/?next=/dashboard/project/i",
+        volumeName: "revenue-assurence-VM-01-Vol-1",
+        volumeURL: "http://118.67.215.11/dashboard/project/volumes/76905062-4af5-405e-b485-3bd66d031a57/"
+    },
+    {
+        projectName: "Revenue-Assurance",
+        projectURL: "http://118.67.215.11/dashboard/auth/switch/344358e7b22049a0bff2ac785417ab4e/?next=/dashboard/project/i",
+        volumeName: "revenue-assurence-VM-01-Vol-2",
+        volumeURL: "http://118.67.215.11/dashboard/project/volumes/f59c48b8-23c2-4f60-bc75-047d6363edc2/"
+    },
 ]
