@@ -18,7 +18,7 @@ import { ShortenPipe } from '../../../shared/pipe/shorten.pipe';
 })
 export class ShiftUpdateComponent implements OnInit, OnDestroy {
   tableHeaderList = ['Date','Details','Remarks','Sales','Reference','Handler', 'Status']
-  updateDataList: Update[] = [];
+  updateDataList!: Update[];
   updateListSubscription!: Subscription;
 
 
@@ -27,7 +27,6 @@ export class ShiftUpdateComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
        this.updateListSubscription = this.updateService.allUpdate().subscribe((update)=>{
         this.updateDataList = update;
-        console.log(this.updateDataList.keys)
        });
   }
 
@@ -36,8 +35,12 @@ export class ShiftUpdateComponent implements OnInit, OnDestroy {
   }
 
   addUpdate(newUpdate:any){
-  this.updateService.addUpdate(newUpdate);
+  this.updateService.addUpdate(newUpdate).subscribe((res)=>{
+    console.log(res);
+    this.fetchUpdates()
+  })
   }
+
   onClick(){
     this.updateService.allUpdate().subscribe((update)=>{
       this.updateDataList = update;
@@ -58,7 +61,35 @@ onComplete(update: Update){
   this.updateService.updateStatus(update)
 }
 
-onDelete() {
-  //
+onDelete(data: any) {
+  console.log(data)
+  this.updateService.deleteUpdate(data).subscribe({
+    next: () => this.fetchUpdates(),
+    error: (err) => console.log(err)
+  })
+}
+
+// clickToAdd(){
+//   const test_update: Update = { 
+//     id: "",
+//     Date: '11-11-23',
+//     Details: 'Test-details',
+//     Remarks: 'Test-remarks',
+//     Sales_Concern: 'test-concernt',
+//     Reference: 'test-reference',
+//     Handler: 'test-handler',
+//     Status: 'test-status',
+//     deleted: false
+//   }
+//   this.updateService.addUpdate(test_update).subscribe((res)=>{
+//     console.log(res)
+//     this.fetchUpdates()
+//   })
+// }
+
+private fetchUpdates(): void {
+  this.updateService.allUpdate().subscribe((update) => {
+    this.updateDataList = update;
+  });
 }
 }

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-input-form',
@@ -15,9 +16,13 @@ export class InputFormComponent {
   formData: {[key: string]: string} = {}
   @Input() isFormVisible: boolean = false;
   @Output() clicked: EventEmitter<void> = new EventEmitter<void>()
+  @Input() navPage!: string;
+
+  constructor(private router: Router){}
 
   onSubmit(formData: NgForm){
     this.formValues.emit(formData.value)
+    this.router.navigate(['/','update'])
   }
   toggleForm() {
     this.isFormVisible = !this.isFormVisible;
@@ -25,5 +30,8 @@ export class InputFormComponent {
 
   onClick(){
     this.clicked.emit()
+    this.isFormVisible = false;
   }
+
+  
 }

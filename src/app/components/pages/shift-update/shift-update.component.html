@@ -2,6 +2,7 @@
     <page-title title="Shift Update"></page-title>
 <app-input-form [fields]="tableHeaderList" (formValues)="addUpdate($event)"
 (clicked)="onClick()"></app-input-form>
+<!-- <div class="" (click)="clickToAdd()">Click to add</div> -->
     <div class="table-container">
         <div class="table">
             <table>
@@ -19,7 +20,14 @@
                         <td>{{updateData.Reference | shorten:getRowNumber(i)}}</td>
                         <td>{{updateData.Handler}}</td>
                         <td>{{updateData.Status}}</td>
-                        <td class="actions"><button (click)="onComplete(updateData)" class="complete"><i class="bi bi-check-lg"></i></button><button (click)="onDelete()" class="delete"><i class="bi bi-x-lg"></i></button></td>
+                        <td class="actions">
+                            <button (click)="onComplete(updateData)" class="complete">
+                                <i class="bi bi-check-lg"></i>
+                            </button>
+                            <button (click)="onDelete(updateData)" class="delete">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </td>
                     </tr>
                 </tbody>
             </table>

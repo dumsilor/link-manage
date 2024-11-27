@@ -81,12 +81,12 @@ app.get("/", (req,res)=>{
 })
 
 app.get("/api/backup", async (req,res)=>{
-    const allBackup = await BackupModel.find({ deleted: { $ne: true} }).sort({ projectName: 'asc' })
+    const allBackup = await BackupModel.find({}).sort({ projectName: 'asc' })
     res.send(allBackup)
 })
 
 app.get("/api/update", async (req,res)=>{
-    const allUpdate = await UpdateModel.find({}).sort({ Date: 'asc' })
+    const allUpdate = await UpdateModel.find({ deleted: { $ne: true} }).sort({ Date: 'asc' })
     res.status(200).send(allUpdate);
 })
 
@@ -114,11 +114,17 @@ app.post("/api/update/add", async (req,res)=>{
 app.post("/api/update/complete", async(req,res)=>{
      const id = req.body.id;
      const status = req.body.Status;
-    const update = await BackupModel.findOneAndUpdate({_id: id},{ Status: status })
+    const update = await UpdateModel.findOneAndUpdate({_id: id},{ Status: status })
     console.log(update)
     if (update) {
         res.send(update)
     }
+})
+
+app.post("/api/update/delete", async(req,res)=>{
+    const id = req.body.id; 
+    console.log(id)
+    const deleteTask = await UpdateModel.findOneAndUpdate({_id: id},{deleted: true}).then(()=>res.status(201).json({message: "Deleted Successfully"})).catch((err)=>res.status(500).send(err))
 })
 
 

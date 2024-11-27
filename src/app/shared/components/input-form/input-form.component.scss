@@ -6,6 +6,7 @@
 
 .form-container {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     margin-bottom: 2rem;
     .control {
@@ -19,6 +20,7 @@
             border: none;
             background-color: $bg-color;
             border-bottom: 1px solid $txt-color;
+            width: 20rem;
             &:focus{
                 outline: none;
             }
@@ -27,6 +29,7 @@
     }
     .btn{
         margin-left: 2rem;
+        margin-top: 2rem;
         button{
             background-color: $hover-color;
             height: 3rem;
@@ -54,7 +57,7 @@
 
 i {
     color:$title;
-    font-size: 5rem;
+    font-size: 3rem;
 }
 
 i:hover{
