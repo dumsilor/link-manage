@@ -80,15 +80,16 @@ app.get("/", (req,res)=>{
     res.send("Server Ran Properly")
 })
 
+app.get("/api/backup", async (req,res)=>{
+    const allBackup = await BackupModel.find({ deleted: { $ne: true} }).sort({ projectName: 'asc' })
+    res.send(allBackup)
+})
+
 app.get("/api/update", async (req,res)=>{
     const allUpdate = await UpdateModel.find({}).sort({ Date: 'asc' })
     res.status(200).send(allUpdate);
 })
 
-app.get("/api/backup", async (req,res)=>{
-    const allBackup = await BackupModel.find({ deleted: { $ne: true} }).sort({ projectName: 'asc' })
-    res.send(allBackup)
-})
 
 app.post("/api/update/add", async (req,res)=>{
     const {Date, Details, Reference, Remarks, Sales, Handler, Status, deleted} = req.body;
@@ -108,6 +109,16 @@ app.post("/api/update/add", async (req,res)=>{
     }).catch((err)=> {
       res.status(500).json({ error: err.message });
 })
+})
+
+app.post("/api/update/complete", async(req,res)=>{
+     const id = req.body.id;
+     const status = req.body.Status;
+    const update = await BackupModel.findOneAndUpdate({_id: id},{ Status: status })
+    console.log(update)
+    if (update) {
+        res.send(update)
+    }
 })
 
 

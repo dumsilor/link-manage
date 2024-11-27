@@ -1,4 +1,31 @@
-<page-title title="Shift Update"></page-title>
+<div class="container">
+    <page-title title="Shift Update"></page-title>
 <app-input-form [fields]="tableHeaderList" (formValues)="addUpdate($event)"
 (clicked)="onClick()"></app-input-form>
-<app-table  [tableHeaders]="tableHeaderList" [rowDataList]="updateDataList" (complete)="completeTask($event)" (delete)="deleteTask($event)"></app-table>
+    <div class="table-container">
+        <div class="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th *ngFor="let tableHeader of tableHeaderList">{{tableHeader}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let updateData of updateDataList; let i = index" (click)="toggleRow(i)">
+                        <td>{{updateData.Date}}</td>
+                        <td>{{updateData.Details | shorten:getRowNumber(i)}}</td>
+                        <td>{{updateData.Remarks | shorten:getRowNumber(i)}}</td>
+                        <td>{{updateData.Sales_Concern}}</td>
+                        <td>{{updateData.Reference | shorten:getRowNumber(i)}}</td>
+                        <td>{{updateData.Handler}}</td>
+                        <td>{{updateData.Status}}</td>
+                        <td class="actions"><button (click)="onComplete(updateData)" class="complete"><i class="bi bi-check-lg"></i></button><button (click)="onDelete()" class="delete"><i class="bi bi-x-lg"></i></button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!-- <app-table  [tableHeaders]="tableHeaderList" [rowDataList]="updateDataList" (complete)="completeTask($event)" (delete)="deleteTask($event)"></app-table> -->

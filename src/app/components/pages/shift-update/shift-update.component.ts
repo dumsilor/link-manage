@@ -1,16 +1,17 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { TableComponent } from '../../../shared/components/table/table.component';
 import { UpdateService } from './update.service';
 import { TitleComponent } from '../../../shared/components/title/title.component';
 import { InputFormComponent } from "../../../shared/components/input-form/input-form.component";
 import { Update } from '../../../shared/model/update.model';
+import { CommonModule } from '@angular/common';
+import { ShortenPipe } from '../../../shared/pipe/shorten.pipe';
 
 @Component({
   selector: 'app-shift-update',
   standalone: true,
-  imports: [TableComponent, TitleComponent, InputFormComponent],
+  imports: [TitleComponent, InputFormComponent, CommonModule, ShortenPipe],
   templateUrl: './shift-update.component.html',
   styleUrl: './shift-update.component.scss',
   providers: [UpdateService]
@@ -28,19 +29,10 @@ export class ShiftUpdateComponent implements OnInit, OnDestroy {
         this.updateDataList = update;
         console.log(this.updateDataList.keys)
        });
-      console.log(this.completeTask)
   }
 
   ngOnDestroy(): void {
     this.updateListSubscription.unsubscribe();
-  }
-
-  completeTask(event: string) {
-    //
-  }
-
-  deleteTask(event: boolean) {
-    //
   }
 
   addUpdate(newUpdate:any){
@@ -51,4 +43,22 @@ export class ShiftUpdateComponent implements OnInit, OnDestroy {
       this.updateDataList = update;
     })
   }
+
+  expandRowIndex: number | null = null;
+
+toggleRow(index: number){
+  this.expandRowIndex = this.expandRowIndex === index ? null : index;
+}
+getRowNumber(index: number): number {
+  return this.expandRowIndex === index ? 15000 : 75;
+}
+
+onComplete(update: Update){
+  update.Status = "completed";
+  this.updateService.updateStatus(update)
+}
+
+onDelete() {
+  //
+}
 }

@@ -91,4 +91,22 @@ export const all_tools: Tool[] = [
    userName: "core.system@intercloud.com.bd",
    password: "mBSrdN&I/d90"
 },
+{
+   name: "Backup Portal RDP",
+   url: "baas.brilliant.com.bd",
+   userName: "administrator",
+   password: "kjferi_lfbDSNQK@#346"
+},
+{
+   name: "Backup Portal main RDP",
+   url: "backup.brilliant.com.bd",
+   userName: "administrator",
+   password: "kjferi_lfbDSNQK@#346"
+},
+{
+   name: "Remote VPN Password",
+   url: "103.248.13.66:10443",
+   userName: "mosiur.rahman",
+   password: "Hgd%4st#4d"
+},
 ]
