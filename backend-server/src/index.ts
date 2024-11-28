@@ -2,6 +2,9 @@ import express from "express";
 import cors from 'cors';
 import mongoose from 'mongoose';
 import {vols} from "../../src/app/backup"
+import {all_tools} from "../../src/app/urls"
+import crypto from "crypto";
+import bcrypt from "bcrypt"
 
 const app = express()
 
@@ -34,6 +37,14 @@ interface IUpdate {
     deleted: boolean
 }
 
+interface ICreds {
+    name: string,
+    url: string,
+    userName: string,
+    password: string,
+    iv: string
+}
+
 const backupSchema =  new mongoose.Schema<IBackup>({
     projectName: String,
     projectURL: String,
@@ -64,9 +75,23 @@ const updateSchema = new mongoose.Schema<IUpdate>({
     timestamps: true,
 })
 
+const credsSchema = new mongoose.Schema({
+    name: String,
+    url: String,
+    userName: String,
+    password: String,
+    iv: String
+},
+{
+    toJSON: {virtuals: true},
+    toObject: {virtuals: true},
+    timestamps: true,
+})
+
+
 const BackupModel =  mongoose.model<IBackup>("backup",backupSchema)
 const UpdateModel = mongoose.model<IUpdate>("update", updateSchema)
-
+const CredsModel = mongoose.model<ICreds>("credential",credsSchema)
 
 app.get("/seed-backup", async (req,res)=>{
     // const backupCount = await BackupModel.countDocuments();
@@ -127,6 +152,55 @@ app.post("/api/update/delete", async(req,res)=>{
     const deleteTask = await UpdateModel.findOneAndUpdate({_id: id},{deleted: true}).then(()=>res.status(201).json({message: "Deleted Successfully"})).catch((err)=>res.status(500).send(err))
 })
 
+const passPhase = "18b1e091097da0eac9764f65dea470bf6a46b3f3fb693627a11cff8353efb007";
+const secretKey = crypto.createHash('sha256').update(passPhase).digest();
+
+function encryptPassword(password: string){
+    const iv = crypto.randomBytes(16);
+    const cipher = crypto.createCipheriv('aes-256-cbc',Buffer.from(secretKey), iv)
+    let encrypted = cipher.update(password)
+    encrypted =Buffer.concat([encrypted, cipher.final()])
+    return  { iv: iv.toString('hex'), encryptedPassword: encrypted.toString('hex') }
+}
+
+function decryptPassword(encryptedPassword: string, iv: string) {
+    const decipher = crypto.createDecipheriv('aes-256-cbc', Buffer.from(secretKey), Buffer.from(iv, 'hex'));
+    let decrypted = decipher.update(Buffer.from(encryptedPassword, 'hex'));
+    decrypted = Buffer.concat([decrypted, decipher.final()]);
+    return decrypted.toString();
+  }
+
+app.get("/api/seed-creds",async(req,res)=>{
+    const all_creds: ICreds[] = all_tools;
+    for (const cred of all_creds) {
+        const { iv, encryptedPassword} = encryptPassword(cred.password)
+
+        const newCred =new CredsModel({
+            name: cred.name,
+            url: cred.url,
+            userName: cred.userName,
+            password: encryptedPassword,
+            iv: iv
+        })
+
+        await newCred.save()
+    }
+    res.send("Credentials Seeded successfully")
+})
+
+app.get("/api/secrets",async(req,res)=>{
+    const all_credentials = await CredsModel.find({});
+
+    const decryptedCredentials = all_credentials.map((cred)=>{
+        const decryptedPassword = decryptPassword(cred.password, cred.iv);
+        return {
+            ...cred.toObject(),
+            password: decryptedPassword,
+        }
+    })
+    res.send(decryptedCredentials)
+
+})
 
 const PORT = 3000;
 app.listen(PORT,()=>{

@@ -1,6 +1,6 @@
 import { Tool } from "./shared/model/tool.model";
 
-export const all_tools: Tool[] = [
+export const all_tools: any[] = [
 {
     name: 'Nagios',
     url: "http://nagios.brilliant.com.bd/nagios",

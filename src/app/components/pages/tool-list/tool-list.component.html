@@ -1,4 +1,25 @@
 <div class="container">
     <app-title title="Tool List"></app-title>
-    <tool *ngFor="let tool of tools" [name]="tool.name" [url]="tool.url" [userName]="tool.userName" [password]="tool.password"></tool>
+    <div class="table-container">
+        <div class="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Service Name</th>
+                        <th>User Name</th>
+                        <th>Password</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let rowData of credList; let i = index">
+                        <td><a [href]="rowData.url">{{rowData.name}}</a></td>
+                        <td>{{rowData.userName}}</td>
+                        <td>{{rowData.password}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- <tool *ngFor="let cred of credList" [name]="cred.name" [url]="cred.url" [userName]="cred.userName" [password]="cred.password"></tool> -->
 </div>

@@ -1,7 +1,96 @@
-.container {
+@import './../../../shared/scss/colors.scss';
+
+.table-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 2rem;
+    
+}
+
+.table{
+    padding: 0rem 2rem;
+}
+
+table {
+    margin-left: 1rem;
+}
+
+table, tr, td {
+    border-collapse: collapse;
+    border: none;
+}
+
+th{
+    color: $txt-heading-color;
+    font-size: 1.5rem;
+    padding-bottom: 3rem;
+    position:sticky;
+}
+
+tbody tr {
+    transition: all 0.3s 
+}
+
+tbody tr:hover {
+    transform: scale(1.01);
+    background-color: rgba($hover-color,0.5);
+    border-collapse: collapse;
+    border: none;
+}
+
+td:first-child{
+    border-radius: 1rem 0rem 0rem 1rem;
+    padding-left: 2rem;
+}
+
+td:nth-child(3){
+    transition: color 0.09s ease-in-out;
+}
+td:last-child{
+    border-radius: 0rem 1rem 1rem 0rem;
+    padding-right: 2rem;
+}
+
+td:nth-child(3):active {
+    color: rgb(168, 168, 168);
+}
+
+tr:nth-child(even) {
+   background-color: rgba(0,0,0,0.03);
+}
+
+td {
+    padding: 0.7rem 1.5rem;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+    max-width: 300px;
+}
+
+.actions {
+    display: grid;
+}
+
+.complete{
+    background-color: $txt-heading-color;
+    border: none;
+    height: 2rem;
+    width: 2.5rem;
+    border-radius: 10px;
+    &:hover {
+        background-color: darken($txt-heading-color, 20);
+    }
+}
+
+.delete {
+    background-color: $danger;
+    border: none;
+    height: 2rem;
+    width: 2.5rem;
+    border-radius: 10px;
+    margin-top: 5px;
+    &:hover {
+        background-color: darken($danger, 20);
+    }
 }
