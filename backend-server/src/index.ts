@@ -110,6 +110,18 @@ app.get("/api/backup", async (req,res)=>{
     res.send(allBackup)
 })
 
+app.post("/api/backup/search",  async (req,res)=>{
+    const searchTerm = req.body.term;
+    const foundItems = await BackupModel.find({
+        $or: [
+            { projectName: new RegExp(searchTerm,"i") },
+            { volumeName: new RegExp(searchTerm, "i") }
+        ]
+    })
+
+    res.status(201).send(foundItems);
+})
+
 app.get("/api/update", async (req,res)=>{
     const allUpdate = await UpdateModel.find({ deleted: { $ne: true} }).sort({ Date: 'asc' })
     res.status(200).send(allUpdate);

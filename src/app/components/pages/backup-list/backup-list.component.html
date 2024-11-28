@@ -2,6 +2,10 @@
     <div class="title">
         <h2>Backup List</h2>
     </div>
+    <div class="search">
+        <app-search (textChange)="onTextChange($event)"></app-search>
+    </div>
+    <p>{{searchTerm}}</p>
     <div class="table">
         <table>
             <thead>
@@ -21,7 +25,7 @@
                     <td><a target="_blank" [href]=backup.projectURL>{{backup.projectName}}</a></td>
                     <td><a target="_blank" [href]=backup.volumeURL>{{backup.volumeName}}</a></td>
                     <td class="copyName" #copy (click)="copyName(copy)">{{backup.volumeName}}-{{currentDate | date: 'dd-MM-YYYY'}}-Cloud</td>
-                    <td class="input"><input type="checkbox" name="status" id="status" /></td>
+                    <td class="input"><input type="checkbox" name="status" id="status"  /></td>
                 </tr>
             </tbody>
         </table>

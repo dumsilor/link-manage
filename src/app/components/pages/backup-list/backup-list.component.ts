@@ -2,22 +2,31 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BackupService } from './backup-list.service';
 import { Backup } from '../../../shared/model/backup.model';
 import { CommonModule } from '@angular/common';
-import { Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged, Subscription, switchMap } from 'rxjs';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SearchComponent } from "../../../shared/components/search/search.component";
+import { searchService } from '../../../shared/components/search/search.service';
 
 @Component({
   selector: 'app-backup-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule, SearchComponent],
   templateUrl: './backup-list.component.html',
   styleUrl: './backup-list.component.scss',
   providers: [BackupService]
 })
 export class BackupListComponent implements OnInit, OnDestroy{
+
+
   backupVolumes: Backup[] = []
   currentDate = new Date();
   innerHTML!: string;
   backupVolumesSubscription!: Subscription;
-  constructor(private backupService: BackupService) {}
+  searchTerm: FormControl = new FormControl();
+
+
+  
+  constructor(private backupService: BackupService, private searchService: searchService) {}
 
   ngOnInit(): void {
       this.backupVolumesSubscription = this.backupService.allBackups().subscribe((volumes)=>{
@@ -37,5 +46,19 @@ export class BackupListComponent implements OnInit, OnDestroy{
   }
   onReset() {
 
+  }
+
+  searchRequestSubscriptions: Subscription[] = [];
+
+  onTextChange(changedText: string) {
+    this.cancelPendingRequests();
+    this.searchService.search(changedText).subscribe((resp)=>{
+      this.backupVolumes = resp;
+    })
+
+  }
+
+  cancelPendingRequests() {
+    this.searchRequestSubscriptions.forEach(sub => sub.unsubscribe());
   }
 }
