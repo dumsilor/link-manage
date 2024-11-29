@@ -5,15 +5,16 @@ import {vols} from "../../src/app/backup"
 import {all_tools} from "../../src/app/urls"
 import crypto from "crypto";
 import bcrypt from "bcrypt"
+import dotenv from "dotenv";
+
 
 const app = express()
 
+dotenv.config()
 app.use(express.json())
 app.use(cors())
 
-const MONGO_URI = 'mongodb://jutsujen:f%40!ry-T%40!l@118.67.213.117:27017/navigatorDB?authSource=admin'
-
-mongoose.connect(MONGO_URI).then(()=>{console.log("Connected")}).catch((err)=>console.log(err))
+mongoose.connect(process.env.MONGO_URI!).then(()=>{console.log("Connected")}).catch((err)=>console.log(err))
 
 const headerSchema = new mongoose.Schema({
     headerName: String
@@ -164,7 +165,7 @@ app.post("/api/update/delete", async(req,res)=>{
     const deleteTask = await UpdateModel.findOneAndUpdate({_id: id},{deleted: true}).then(()=>res.status(201).json({message: "Deleted Successfully"})).catch((err)=>res.status(500).send(err))
 })
 
-const passPhase = "18b1e091097da0eac9764f65dea470bf6a46b3f3fb693627a11cff8353efb007";
+const passPhase = process.env.PASS_PHASE!;
 const secretKey = crypto.createHash('sha256').update(passPhase).digest();
 
 function encryptPassword(password: string){
