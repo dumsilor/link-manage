@@ -10,7 +10,6 @@ export class searchService {
     constructor(private httpClient: HttpClient){}
 
     search(term: string){
-        console.log(term)
         let params = new HttpParams().set('term',term)
 
         return this.httpClient.post<Backup[]>(BACKUP_GET_URL+"/search",{term})

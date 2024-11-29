@@ -20,6 +20,7 @@ export class ShiftUpdateComponent implements OnInit, OnDestroy {
   tableHeaderList = ['Date','Details','Remarks','Sales','Reference','Handler', 'Status']
   updateDataList!: Update[];
   updateListSubscription!: Subscription;
+  todayDate!: String;
 
 
   constructor(private updateService: UpdateService) {}
@@ -28,6 +29,14 @@ export class ShiftUpdateComponent implements OnInit, OnDestroy {
        this.updateListSubscription = this.updateService.allUpdate().subscribe((update)=>{
         this.updateDataList = update;
        });
+       let date = new Date();
+       let dd = String(date.getDate()).padStart(2,'0');
+       let mm = String(date.getMonth()).padStart(2,'0');
+       let yyyy = String(date.getFullYear());
+       let today = `${dd}\\${mm}\\${yyyy}`
+       this.todayDate = today;
+
+
   }
 
   ngOnDestroy(): void {

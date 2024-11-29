@@ -30,6 +30,7 @@ import { Subject, debounceTime, distinctUntilChanged, Subscription } from 'rxjs'
         this.textChange.emit(currentValue);
       });
       this.subscriptions.push(subscription);
+      console.log(this.subscriptions)
     }
   
     ngOnDestroy() {
