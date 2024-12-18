@@ -1,8 +1,8 @@
 import express from "express";
 import cors from 'cors';
 import mongoose from 'mongoose';
-import {vols} from "../../src/app/backup"
-import {all_tools} from "../../src/app/urls"
+//import {vols} from "../../src/app/backup"
+//import {all_tools} from "../../src/app/urls"
 import crypto from "crypto";
 import bcrypt from "bcrypt"
 
@@ -98,7 +98,7 @@ app.get("/seed-backup", async (req,res)=>{
     // if (backupCount > 0) {
     //     res.send("Seed already done")
     // }
-    BackupModel.create(vols)
+//    BackupModel.create(vols)
 })
 
 app.get("/", (req,res)=>{
@@ -183,8 +183,9 @@ function decryptPassword(encryptedPassword: string, iv: string) {
   }
 
 app.get("/api/seed-creds",async(req,res)=>{
-    const all_creds: ICreds[] = all_tools;
-    for (const cred of all_creds) {
+//    const all_creds: ICreds[] = all_tools;
+      const all_creds: ICreds[] = [];
+      for (const cred of all_creds) {
         const { iv, encryptedPassword} = encryptPassword(cred.password)
 
         const newCred =new CredsModel({
