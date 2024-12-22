@@ -7,11 +7,12 @@ import { InputFormComponent } from "../../../shared/components/input-form/input-
 import { Update } from '../../../shared/model/update.model';
 import { CommonModule } from '@angular/common';
 import { ShortenPipe } from '../../../shared/pipe/shorten.pipe';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-shift-update',
   standalone: true,
-  imports: [TitleComponent, InputFormComponent, CommonModule, ShortenPipe],
+  imports: [TitleComponent, InputFormComponent, CommonModule, ShortenPipe, FormsModule],
   templateUrl: './shift-update.component.html',
   styleUrl: './shift-update.component.scss',
   providers: [UpdateService]
@@ -21,7 +22,8 @@ export class ShiftUpdateComponent implements OnInit, OnDestroy {
   updateDataList!: Update[];
   updateListSubscription!: Subscription;
   todayDate!: String;
-
+  editMode = false;
+  editIndex: number | null = null;
 
   constructor(private updateService: UpdateService) {}
 
@@ -78,6 +80,9 @@ onDelete(data: any) {
   })
 }
 
+onEdit(index: number) {
+  this.editIndex = index;
+}
 // clickToAdd(){
 //   const test_update: Update = { 
 //     id: "",
@@ -95,6 +100,15 @@ onDelete(data: any) {
 //     this.fetchUpdates()
 //   })
 // }
+
+onEditSave() {
+  //
+}
+
+onCancel()
+{
+  this.editIndex = null;
+}
 
 private fetchUpdates(): void {
   this.updateService.allUpdate().subscribe((update) => {

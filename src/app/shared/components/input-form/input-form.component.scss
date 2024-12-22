@@ -51,8 +51,9 @@
 
 .toggle{
     position: fixed;
-    right: 2.5rem;
+    right: 2rem;
     bottom: 0;
+    z-index: 100;
 }
 
 i {

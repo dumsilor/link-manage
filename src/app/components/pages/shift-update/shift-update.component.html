@@ -12,23 +12,43 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let updateData of updateDataList; let i = index" (click)="toggleRow(i)">
-                        <td>{{updateData.Date}}</td>
-                        <td>{{updateData.Details | shorten:getRowNumber(i)}}</td>
-                        <td>{{updateData.Remarks | shorten:getRowNumber(i)}}</td>
-                        <td>{{updateData.Sales_Concern}}</td>
-                        <td>{{updateData.Reference | shorten:getRowNumber(i)}}</td>
-                        <td>{{updateData.Handler}}</td>
-                        <td>{{updateData.Status}}</td>
-                        <td class="actions">
-                            <button (click)="onComplete(updateData)" class="complete">
-                                <i class="bi bi-check-lg"></i>
-                            </button>
-                            <button (click)="onDelete(updateData)" class="delete">
-                                <i class="bi bi-x-lg"></i>
-                            </button>
-                        </td>
-                    </tr>
+                    <ng-container *ngFor="let updateData of updateDataList; let i = index" >
+                        <ng-container *ngIf="editIndex!==i">
+                            <tr (click)="toggleRow(i)">
+                                <td>{{updateData.Date}}</td>
+                                <td>{{updateData.Details | shorten:getRowNumber(i)}}</td>
+                                <td>{{updateData.Remarks | shorten:getRowNumber(i)}}</td>
+                                <td>{{updateData.Sales_Concern}}</td>
+                                <td>{{updateData.Reference | shorten:getRowNumber(i)}}</td>
+                                <td>{{updateData.Handler}}</td>
+                                <td>{{updateData.Status}}</td>
+                                <td class="actions">
+                                    <button (click)="onComplete(updateData)" class="complete">
+                                        <i class="bi bi-check-lg"></i>
+                                    </button>
+                                    <button (click)="onDelete(updateData)" class="delete">
+                                        <i class="bi bi-x-lg"></i>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button (click)="onEdit(i)" class="edit">
+                                        <i class="bi bi-pencil"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </ng-container>
+                        <ng-container *ngIf="editIndex===i">
+                            <td class="edit-input"><input type="text" [(ngModel)]="updateData.Date"></td>
+                            <td class="edit-input"><textarea name="text" [(ngModel)]="updateData.Details" id="">updateData.Details</textarea></td>
+                            <td class="edit-input"><input type="text" [(ngModel)]="updateData.Remarks"></td>
+                            <td class="edit-input"><input type="text" [(ngModel)]="updateData.Sales_Concern"></td>
+                            <td class="edit-input"><input type="text" [(ngModel)]="updateData.Reference"></td>
+                            <td class="edit-input"><input type="text" [(ngModel)]="updateData.Handler"></td>
+                            <td class="edit-input"><input type="text" [(ngModel)]="updateData.Status"></td>
+                            <td><button (click)="onEditSave()">Save</button></td>
+                            <td><button (click)="onCancel()" >Cancel</button></td>
+                        </ng-container>
+                    </ng-container>
                 </tbody>
             </table>
         </div>
