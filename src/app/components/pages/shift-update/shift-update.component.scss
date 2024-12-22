@@ -94,3 +94,23 @@ td {
         background-color: darken($danger, 20);
     }
 }
+
+.edit{
+    background-color: yellowgreen;
+    border: none;
+    height: 2rem;
+    width: 2.5rem;
+    border-radius: 10px;
+    margin-top: 5px;
+    &:hover {
+        background-color: darken(yellowgreen, 20);
+    }
+}
+
+
+.edit-input {
+    input{
+        max-width: 100px;
+
+    }
+}
