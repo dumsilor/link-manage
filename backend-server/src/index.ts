@@ -23,7 +23,8 @@ interface IBackup {
     projectName: string,
     projectURL: string,
     volumeName: string,
-    volumeURL: string
+    volumeURL: string,
+    day: string
 }
 
 interface IUpdate {
@@ -49,7 +50,8 @@ const backupSchema =  new mongoose.Schema<IBackup>({
     projectName: String,
     projectURL: String,
     volumeName: String,
-    volumeURL: String
+    volumeURL: String,
+    day:
 },
 {
     toJSON: { virtuals: true },

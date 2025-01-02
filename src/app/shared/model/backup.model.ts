@@ -3,4 +3,5 @@ export class Backup{
     projectURL!: string;
     volumeName!: string;
     volumeURL!: string;
+    day!: string;
 }
