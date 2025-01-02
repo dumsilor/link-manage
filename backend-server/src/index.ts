@@ -51,7 +51,7 @@ const backupSchema =  new mongoose.Schema<IBackup>({
     projectURL: String,
     volumeName: String,
     volumeURL: String,
-    day:
+    day: String
 },
 {
     toJSON: { virtuals: true },
