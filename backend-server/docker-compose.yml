@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   link-manage-backend:
     build: .
@@ -8,4 +6,4 @@ services:
     environment:
       - NODE_ENV=production
     deploy:
-      replicas: 3
+      replicas: 1
