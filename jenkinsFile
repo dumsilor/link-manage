@@ -1,16 +1,18 @@
 pipeline {
     agent any
     
-
+    tools {
+        nodejs 'nodejs'
+    }
     stages{
-        stage('Build') {
+        stage('Checkout') {
             steps {
-                echo 'Building...'
+                git branch: 'jenkins-build' url: 'https://github.com/dumsilor/link-manage.git'
             }
         }
-        stage('Test') {
+        stage('Install Dependencies') {
             steps {
-                echo 'Testing...'
+                sh 'npm install'
             }
         }
         stage('Deploy') {
