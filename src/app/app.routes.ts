@@ -3,11 +3,13 @@ import { BackupListComponent } from './components/pages/backup-list/backup-list.
 import { ShiftUpdateComponent } from './components/pages/shift-update/shift-update.component';
 import { NoMansLandComponent } from './components/pages/no-mans-land/no-mans-land.component';
 import { ToolListComponent } from './components/pages/tool-list/tool-list.component';
+import { LoginComponent } from './components/pages/login/login.component';
 
 export const routes: Routes = [
     {path: "", component: NoMansLandComponent},
     {path: "backup", component: BackupListComponent},
     {path: "update", component: ShiftUpdateComponent},
     {path: "creds", component: ToolListComponent },
+    {path: "login", component: LoginComponent },
     {path: "**", component: NoMansLandComponent},
 ];
