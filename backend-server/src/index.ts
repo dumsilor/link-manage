@@ -1,7 +1,7 @@
 import express from "express";
 import cors from 'cors';
 import mongoose from 'mongoose';
-//import {vols} from "../../src/app/backup"
+import {vols} from "../../src/app/backup"
 //import {all_tools} from "../../src/app/urls"
 import crypto from "crypto";
 import bcrypt from "bcrypt"
@@ -104,7 +104,7 @@ app.get("/seed-backup", async (req,res)=>{
     // if (backupCount > 0) {
     //     res.send("Seed already done")
     // }
-//    BackupModel.create(vols)
+   BackupModel.create(vols)
 })
 
 app.get("/", (req,res)=>{
