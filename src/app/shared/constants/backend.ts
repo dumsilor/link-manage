@@ -1,4 +1,4 @@
-const MAIN_URL = "http://localhost:3000/api"
+const MAIN_URL = "http://118.67.213.117:3000/api"
 
 export const BACKUP_GET_URL = `${MAIN_URL}/backup`;
 export const UPDATE_GET_URL = `${MAIN_URL}/update`;
