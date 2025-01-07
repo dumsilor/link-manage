@@ -23,8 +23,8 @@ export class BackupListComponent implements OnInit, OnDestroy{
   innerHTML!: string;
   backupVolumesSubscription!: Subscription;
   searchTerm: FormControl = new FormControl();
-
-
+  days = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+  today!: string;
   
   constructor(private backupService: BackupService, private searchService: searchService) {}
 
@@ -32,6 +32,7 @@ export class BackupListComponent implements OnInit, OnDestroy{
       this.backupVolumesSubscription = this.backupService.allBackups().subscribe((volumes)=>{
         this.backupVolumes = volumes;
       });
+      this.today = this.days[this.currentDate.getDay()];
   }
 
   ngOnDestroy(): void {
