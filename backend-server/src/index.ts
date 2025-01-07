@@ -20,12 +20,16 @@ const headerSchema = new mongoose.Schema({
     headerName: String
 })
 
+interface IDay {
+    day: string
+}
+
 interface IBackup {
     projectName: string,
     projectURL: string,
     volumeName: string,
     volumeURL: string,
-    day: string
+    backupDay: Array<IDay>
 }
 
 interface IUpdate {
@@ -52,7 +56,7 @@ const backupSchema =  new mongoose.Schema<IBackup>({
     projectURL: String,
     volumeName: String,
     volumeURL: String,
-    day: String
+    backupDay: Array<IDay>
 },
 {
     toJSON: { virtuals: true },
