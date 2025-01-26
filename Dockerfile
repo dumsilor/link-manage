@@ -1,21 +1,23 @@
-FROM  ubuntu:plucky
+FROM  node AS build
 
-RUN apt update && apt upgrade -y
+WORKDIR /app
 
-RUN apt install git -y
+COPY package*.json ./
 
-RUN mkdir library && cd library
+RUN npm install
 
-WORKDIR ~/library/
+COPY . .
 
-RUN git init
+RUN npm run build --configuration=production
 
-RUN git remote add origin https://github.com/dumsilor/library.git
+FROM nginx
 
-RUN git pull origin master
+COPY --from=build /app/dist/navigator/browser /usr/share/nginx/html
 
-RUN apt install npm
+COPY nginx.conf /etc/nginx/nginx.conf
 
-RUN npm i
+COPY default.conf /etc/nginx/conf.d/default.conf
 
-CMD ["ng","serve"]
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
