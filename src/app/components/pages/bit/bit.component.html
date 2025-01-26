@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="units">
+        <div class="unit" (click)="onUnitClick('bit')">Bits</div>
+        <div class="unit" (click)="onUnitClick('bytes')">Bytes</div>
+        <div class="unit" (click)="onUnitClick('mb')">MegaBytes</div>
+        <div class="unit" (click)="onUnitClick('gb')">GigaBytes</div>
+        <div class="unit" (click)="onUnitClick('pb')">PetaBytes</div>
+    </div>
+    <div class="input">
+        <label for="cal-value">Enter Value: </label>
+        <input type="text" id="cal-value" class=form-control name="calc-value" [(ngModel)]="value"><span>  GB</span>
+    </div>
+    <div class="output">
+        <p>{{ value * factor }} {{selectedUnit}}</p>
+    </div>
+</div>

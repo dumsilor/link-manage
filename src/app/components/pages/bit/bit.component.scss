@@ -1,0 +1,29 @@
+.container {
+    margin: 2rem;
+
+    .units{
+        display: flex;
+        padding-bottom: 2rem;
+        .unit{
+            padding: 1rem;
+            cursor: pointer;
+            &:hover{
+                background-color: lightcoral;
+                border-radius: 10px;
+            }
+        }
+    }
+}
+
+label {
+    padding-right: 1rem;
+}
+
+input{
+    border: none;
+    border-bottom: 2px solid black;
+    border-radius: 5px;
+    padding-left: 1rem;
+    width: 20%;
+}
+
