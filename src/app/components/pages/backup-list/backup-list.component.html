@@ -19,13 +19,6 @@
                 </tr>
             </thead>
             <tbody>
-<<<<<<< HEAD
-                <tr *ngFor="let backup of backupVolumes">
-                    <td><a target="_blank" [href]=backup.projectURL>{{backup.projectName}}</a></td>
-                    <td><a target="_blank" [href]=backup.volumeURL>{{backup.volumeName}}</a></td>
-                    <td class="copyName" #copy (click)="copyName(copy)">{{backup.volumeName}}-{{currentDate | date: 'dd-MM-YYYY'}}-Cloud</td>
-                </tr>
-=======
                 <ng-container *ngFor="let backup of backupVolumes">
                     <tr *ngIf="backup.backupDay.includes(today)">
                         <td><a target="_blank" [href]=backup.projectURL>{{backup.projectName}}</a></td>
@@ -33,7 +26,6 @@
                         <td class="copyName" #copy (click)="copyName(copy)">{{backup.volumeName}}-{{currentDate | date: 'dd-MM-YYYY'}}-Cloud</td>
                     </tr>
                 </ng-container>
->>>>>>> 01af0bf3951d914c030f1d261a3f1a53c28f6d10
             </tbody>
         </table>
     </div>
