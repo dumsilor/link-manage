@@ -1,11 +1,12 @@
 import express from "express";
 import cors from 'cors';
 import mongoose from 'mongoose';
-//import {vols} from "../../src/app/backup"
+import {vols} from "../../src/app/backup"
 //import {all_tools} from "../../src/app/urls"
 import crypto from "crypto";
 import bcrypt from "bcrypt"
 import dotenv from "dotenv";
+import { error } from "console";
 
 
 const app = express()
@@ -100,12 +101,15 @@ const BackupModel =  mongoose.model<IBackup>("backup",backupSchema)
 const UpdateModel = mongoose.model<IUpdate>("update", updateSchema)
 const CredsModel = mongoose.model<ICreds>("credential",credsSchema)
 
+
+
+
 app.get("/seed-backup", async (req,res)=>{
     // const backupCount = await BackupModel.countDocuments();
     // if (backupCount > 0) {
     //     res.send("Seed already done")
     // }
-//    BackupModel.create(vols)
+   BackupModel.create(vols).catch(error=>(console.log(error)))
 })
 
 app.get("/", (req,res)=>{
