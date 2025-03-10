@@ -5,9 +5,10 @@ import { NoMansLandComponent } from './components/pages/no-mans-land/no-mans-lan
 import { ToolListComponent } from './components/pages/tool-list/tool-list.component';
 import { LoginComponent } from './components/pages/login/login.component';
 import { BitComponent } from './components/pages/bit/bit.component';
+import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
 
 export const routes: Routes = [
-    {path: "", component: NoMansLandComponent},
+    {path: "", component: DashboardComponent},
     {path: "backup", component: BackupListComponent},
     {path: "update", component: ShiftUpdateComponent},
     {path: "creds", component: ToolListComponent },
