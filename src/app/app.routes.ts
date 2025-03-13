@@ -6,6 +6,7 @@ import { ToolListComponent } from './components/pages/tool-list/tool-list.compon
 import { LoginComponent } from './components/pages/login/login.component';
 import { BitComponent } from './components/pages/bit/bit.component';
 import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
+import { ClientServiceComponent } from './components/pages/client-service/client-service.component';
 
 export const routes: Routes = [
     {path: "", component: DashboardComponent},
@@ -14,5 +15,6 @@ export const routes: Routes = [
     {path: "creds", component: ToolListComponent },
     {path: "login", component: LoginComponent },
     {path: 'bits', component: BitComponent},
+    {path: "delivery", component: ClientServiceComponent},
     {path: "**", component: NoMansLandComponent},
 ];

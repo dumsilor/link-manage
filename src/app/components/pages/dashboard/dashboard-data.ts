@@ -90,6 +90,18 @@ export const service_links: navLink[] =[
     {
         "name" : "Shodan Engine",
         "url" : "https://www.shodan.io"
+    },
+    {
+      "name" : "HE Internet Services",
+      "url" : "https://bgp.he.net"
+  }
+  ]
+
+
+  export const shift_update = [
+    {
+      "name" : "Client Delivery",
+      "url" : "localhost:4200/delivery"
     }
   ]
 
