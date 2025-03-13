@@ -8,6 +8,7 @@
     background-color: $navcolor;
     width: 100%;
     height: 80px;
+    display: flex;
 }
 
 .dropbtn {
@@ -19,7 +20,7 @@
     height: 100%;
 }
 
-.services-dropdown {
+@mixin dropdown {
     position: relative;
     display: inline-block;
     height: 100%;
@@ -44,11 +45,19 @@
 
 }
 
-.dropdown-content a:hover {background-color: rgba($nav-text-color,0.5);}
-.services-dropdown:hover .dropdown-content {
+.dropdown{
+    @include dropdown;
+}
+
+.dropdown-content a:hover {
+    background-color: rgba($nav-text-color,0.5);
+}
+
+.dropdown:hover .dropdown-content,.portal-dropdown:hover .dropdown-content  {
     display: block;
 }
 
-.services-dropdown:hover .dropbtn {
+.dropdown:hover .dropbtn {
     background-color: rgba($nav-text-color,0.1);
 }
+

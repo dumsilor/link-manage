@@ -1,4 +1,6 @@
-export const service_links =[
+import { navLink } from "../../../shared/model/nav-link.model"
+
+export const service_links: navLink[] =[
     {
       "name": "Client Association Portal (CA)",
       "url": "https://ca.brilliant.com.bd/"
@@ -61,3 +63,33 @@ export const service_links =[
     },
   ]
   
+  export const monitoring_tools_links: navLink[] = [
+    {
+        "name" : "Nagios",
+        "url" : "http://nagios.brilliant.com.bd/nagios/"
+    },
+    {
+        "name" : "Grafana",
+        "url" : "http://grafana.brilliant.com.bd/login"
+    },
+    {
+        "name" : "FortiAnalyzer",
+        "url" : "https://118.67.209.115/p/login/"
+    }
+  ]
+
+  export const tools_links: navLink[] = [
+    {
+        "name" : "MX ToolBox",
+        "url" : "https://mxtoolbox.com"
+    },
+    {
+        "name" : "Telia Looking Glass",
+        "url" : "https://lg.telia.net"
+    },
+    {
+        "name" : "Shodan Engine",
+        "url" : "https://www.shodan.io"
+    }
+  ]
+
