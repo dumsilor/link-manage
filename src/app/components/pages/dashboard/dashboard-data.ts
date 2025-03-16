@@ -94,7 +94,8 @@ export const service_links: navLink[] =[
     {
       "name" : "HE Internet Services",
       "url" : "https://bgp.he.net"
-  }
+  },
+  
   ]
 
 
