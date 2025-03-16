@@ -98,10 +98,9 @@ export const service_links: navLink[] =[
   ]
 
 
-  export const shift_update = [
+  export const service_delivery = [
     {
       "name" : "Client Delivery",
-      "url" : "localhost:4200/delivery"
+      "url" : "http://localhost:4200/delivery"
     }
   ]
-

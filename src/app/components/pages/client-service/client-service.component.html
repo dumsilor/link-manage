@@ -1,1 +1,28 @@
-<p>client-service works!</p>
+<div class="container">
+    <div class="client_list">
+        <table>
+            <thead>
+                <tr>
+                    <th>Client Name</th>
+                    <th>Delivery Status</th>
+                    <th>Delivery Type</th>
+                    <th>Delivery Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let client of data">
+                    <ng-container *ngIf="client.delivery_date === today && !isCompleted">
+                        <td>{{client.client_name}}</td>
+                        <td>{{client.delivery_status}}</td>
+                        <td>{{client.delivery_type}}</td>
+                        <td>{{client.delivery_date }}</td>
+                        <td>
+                            <button (click)="isCompleted=true">Completed</button>
+                        </td>
+                    </ng-container>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
