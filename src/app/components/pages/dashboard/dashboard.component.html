@@ -33,9 +33,9 @@
             </div>
             <div class="delivery">
                 <div class="dropdown">
-                    <button class="dropbtn">Shift-update</button>
+                    <button class="dropbtn">Shift Tasks</button>
                     <div class="dropdown-content">
-                        <ng-container *ngFor="let link of deliveryStatus_links">
+                        <ng-container *ngFor="let link of shift_tasks_links">
                             <a href={{link.url}} target="_blank">{{ link.name }}</a>
                         </ng-container>
                     </div>

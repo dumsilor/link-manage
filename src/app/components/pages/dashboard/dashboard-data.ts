@@ -98,14 +98,22 @@ export const service_links: navLink[] =[
     {
       "name" : "YML Checker",
       "url" : "https://yamlchecker.com/"
+    },
+    {
+      "name" : "IP Calculator",
+      "url" : "https://jodies.de/ipcalc"
     }
 
   ]
 
 
-  export const service_delivery = [
+  export const shift_tasks = [
     {
       "name" : "Client Delivery",
       "url" : "http://localhost:4200/delivery"
+    },
+    {
+      "name": "Monitoring Screenshots list",
+      "url" : "#"
     }
   ]
