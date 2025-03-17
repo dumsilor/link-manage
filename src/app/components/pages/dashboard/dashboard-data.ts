@@ -110,10 +110,17 @@ export const service_links: navLink[] =[
   export const shift_tasks = [
     {
       "name" : "Client Delivery",
-      "url" : "http://localhost:4200/delivery"
+      "url" : "http://118.67.213.117:12180/delivery"
     },
     {
       "name": "Monitoring Screenshots list",
-      "url" : "#"
+      "url" : "https://s3.brilliant.com.bd/bucket-1-ee86738d/shift-tasks/regular-tasks.png"
+    }
+  ]
+
+  export const client_docs = [
+    {
+      "name": "Friendship Diagram",
+      "url" : "https://s3.brilliant.com.bd/bucket-1-ee86738d/client-doc/friendship-diagram.html"
     }
   ]

@@ -41,6 +41,16 @@
                     </div>
                 </div>
             </div>
+            <div class="delivery">
+                <div class="dropdown">
+                    <button class="dropbtn">Client Documents</button>
+                    <div class="dropdown-content">
+                        <ng-container *ngFor="let link of client_doc_links">
+                            <a href={{link.url}} target="_blank">{{ link.name }}</a>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
         </div>
     </nav>
 </div>
