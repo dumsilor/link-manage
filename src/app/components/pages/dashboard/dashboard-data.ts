@@ -80,6 +80,10 @@ export const service_links: navLink[] =[
 
   export const tools_links: navLink[] = [
     {
+      "name" : "Brilliant Speed Test",
+      "url" : "http://103.209.42.218:10480"
+    },
+    {
         "name" : "MX ToolBox",
         "url" : "https://mxtoolbox.com"
     },
@@ -115,6 +119,10 @@ export const service_links: navLink[] =[
     {
       "name": "Monitoring Screenshots list",
       "url" : "https://s3.brilliant.com.bd/bucket-1-ee86738d/shift-tasks/regular-tasks.png"
+    },
+    {
+      "name" : "Daily Infra Report",
+      "url" : "https://docs.google.com/spreadsheets/d/1q5snkjEof6SF1oftgncQe1yETR6kCky-/edit?usp=sharing&ouid=112305840590759320964&rtpof=true&sd=true"
     }
   ]
 

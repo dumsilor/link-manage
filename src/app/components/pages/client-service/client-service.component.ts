@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { ClientDeliveryService } from './client-service.service';
+import { DeliveryModel } from './client-service.model';
 
 @Component({
   selector: 'app-client-service',
@@ -9,18 +11,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrl: './client-service.component.scss'
 })
 export class ClientServiceComponent implements OnInit {
-  data = [
-    {
-      "client_name" : "client",
-      // Termination, provision, Test
-      "delivery_type" : "Test", 
-      // "delivery_type" : "Termination",
-      // "delivery_type" : "Provision",
-      "delivery_status" : "Pending",
-      "delivery_date" : "16/03/2025",
-      "remarks" : "Loream Ipsum is the",
-    }
-  ]
 
   date = new Date();
   day = String(this.date.getDate()).padStart(2,'0');
@@ -28,6 +18,9 @@ export class ClientServiceComponent implements OnInit {
   year = this.date.getFullYear();
   today = this.day + '/' + this.month + '/' + this.year;
   isCompleted= false;
+  allDeliveryTasks!: DeliveryModel[];
+
+  constructor(private clientDeliveryService: ClientDeliveryService){}
 
   ngOnInit(): void {
     // if(this.data.delivery_date === this.today) {
@@ -37,5 +30,13 @@ export class ClientServiceComponent implements OnInit {
     //   console.log(this.data.delivery_date)
     //   console.log(this.today)
     // }
+
+  this.clientDeliveryService.allDelivery().subscribe(data => {
+      this.allDeliveryTasks = data;
+    })
+  }
+
+  completedTask() {
+    this.isCompleted = true;
   }
 }
