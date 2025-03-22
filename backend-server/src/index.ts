@@ -253,7 +253,6 @@ app.get("/api/secrets",async(req,res)=>{
 })
 
 //Client-Service-Delivery-Backend
-//TODO delivery routing
 app.get("/api/delivery", async(req,res)=>{
     const all_tasks = await DeliveryModel.find({})
     res.status(200).send(all_tasks)
@@ -273,9 +272,9 @@ app.post("/api/delivery/create", async(req,res)=>{
 
 //TODO: Check create and read from frontend
 //TODO: FIx the file structure
-//TODO delivery Create
-//TODO delivery Update
-//TODO delivery Delete
+//TODO: delivery Create
+//TODO: delivery Update
+//TODO: delivery Delete
 
 const PORT = 3000;
 app.listen(PORT,()=>{
