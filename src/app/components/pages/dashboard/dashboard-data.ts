@@ -114,7 +114,7 @@ export const service_links: navLink[] =[
   export const shift_tasks = [
     {
       "name" : "Client Delivery",
-      "url" : "http://118.67.213.117:12180/delivery"
+      "url" : "http://localhost:12180/delivery"
     },
     {
       "name": "Monitoring Screenshots list",

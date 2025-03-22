@@ -21,7 +21,6 @@ export class ClientServiceComponent implements OnInit {
   allDeliveryTasks!: DeliveryModel[];
 
   constructor(private clientDeliveryService: ClientDeliveryService){}
-
   ngOnInit(): void {
     // if(this.data.delivery_date === this.today) {
     //   console.log("Date Matched")
@@ -30,8 +29,7 @@ export class ClientServiceComponent implements OnInit {
     //   console.log(this.data.delivery_date)
     //   console.log(this.today)
     // }
-
-  this.clientDeliveryService.allDelivery().subscribe(data => {
+    this.clientDeliveryService.allDelivery().subscribe(data=>{
       this.allDeliveryTasks = data;
     })
   }
