@@ -25,4 +25,17 @@
             </tbody>
         </table>
     </div>
+    <div class="form-container">
+        <form action="" #clientForm="ngForm" (ngSubmit)="addNewClient()">
+            <label for="clientName">Client Name</label>
+            <input type="text" id="clientName" name="clientName" placeholder="Enter client name" [(ngModel)]="newClient.client_name" #clientName="ngModel" required>
+            <label for="clientName">Client Delivery Status</label>
+            <input type="text" id="clientDeliveryStatus" name="clientDeliveryStatus"  placeholder="Enter delivery status" [(ngModel)]="newClient.delivery_status" #clientDeliveryStatus="ngModel" required>
+            <label for="clientName">Client Delivery Type</label>
+            <input type="text" id="clientDeliveryType" name="clientDeliveryType" placeholder="Enter delivery type" [(ngModel)]="newClient.delivery_type" #clientDeliveryType="ngModel" required>
+            <label for="clientName">Client Delivery Date</label>
+            <input type="date" id="clientDeliveryDate" name="clientDeliveryDate"  placeholder="Enter delivery date" [(ngModel)]="newClient.delivery_date" #clientDeliveryDate="ngModel" required>
+            <button type="submit" [disabled]="clientForm.invalid">Add</button>
+        </form>
+    </div>
 </div>

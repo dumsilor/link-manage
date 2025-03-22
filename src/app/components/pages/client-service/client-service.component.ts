@@ -1,26 +1,33 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ClientDeliveryService } from './client-service.service';
 import { DeliveryModel } from './client-service.model';
+import { Subscription } from 'rxjs';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-client-service',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './client-service.component.html',
   styleUrl: './client-service.component.scss'
 })
-export class ClientServiceComponent implements OnInit {
+export class ClientServiceComponent implements OnInit, OnDestroy {
 
   date = new Date();
   day = String(this.date.getDate()).padStart(2,'0');
   month = String(this.date.getMonth()+1).padStart(2,'0');
   year = this.date.getFullYear();
-  today = this.day + '/' + this.month + '/' + this.year;
+  today =  this.year + "-" + this.month +"-"+ this.day;
   isCompleted= false;
   allDeliveryTasks!: DeliveryModel[];
+  newClient: DeliveryModel = new DeliveryModel()
+  allDeliverySubscription!: Subscription;
 
+  
   constructor(private clientDeliveryService: ClientDeliveryService){}
+
+
   ngOnInit(): void {
     // if(this.data.delivery_date === this.today) {
     //   console.log("Date Matched")
@@ -29,12 +36,28 @@ export class ClientServiceComponent implements OnInit {
     //   console.log(this.data.delivery_date)
     //   console.log(this.today)
     // }
-    this.clientDeliveryService.allDelivery().subscribe(data=>{
+    this.allDeliverySubscription = this.clientDeliveryService.allDelivery().subscribe(data=>{
       this.allDeliveryTasks = data;
+      console.log(data[0].delivery_date)
     })
+    console.log(this.today)
+  }
+
+  ngOnDestroy(): void {
+    this.allDeliverySubscription.unsubscribe();
   }
 
   completedTask() {
     this.isCompleted = true;
+  }
+
+  addNewClient() {
+    this.clientDeliveryService.addNewClientToDB(this.newClient).subscribe(res=>{
+      console.log(res);
+      this.newClient = new DeliveryModel();
+      this.clientDeliveryService.allDelivery().subscribe(data=>{
+        this.allDeliveryTasks = data;
+      })
+    })
   }
 }

@@ -14,4 +14,8 @@ export class ClientDeliveryService {
     allDelivery(): Observable<DeliveryModel[]> {
         return this.httpClient.get<DeliveryModel[]>("http://localhost:3000/api/delivery")
     }
+
+    addNewClientToDB(newClient: DeliveryModel){
+        return this.httpClient.post("http://localhost:3000/api/delivery/create", newClient)
+    }
 }
