@@ -11,7 +11,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let client of data">
+                <tr *ngFor="let client of allDeliveryTasks">
                     <ng-container *ngIf="client.delivery_date === today && !isCompleted">
                         <td>{{client.client_name}}</td>
                         <td>{{client.delivery_status}}</td>

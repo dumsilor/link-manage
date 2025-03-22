@@ -21,6 +21,16 @@ const headerSchema = new mongoose.Schema({
     headerName: String
 })
 
+interface IDelivery {
+    client_name: string,
+    delivery_type: string, 
+    // "delivery_type" : "Termination",
+    // "delivery_type" : "Provision",
+    delivery_status: string,
+    delivery_date: string,
+    remarks: string
+}
+
 interface IDay {
     day: string
 }
@@ -97,9 +107,25 @@ const credsSchema = new mongoose.Schema({
 })
 
 
+const deliverySchema = new mongoose.Schema({
+    client_name: String,
+    delivery_type: String, 
+    // "delivery_type" : "Termination",
+    // "delivery_type" : "Provision",
+    delivery_status: String,
+    delivery_date: String,
+    remarks: String
+},
+{
+    toJSON: {virtuals: true},
+    toObject: {virtuals: true},
+    timestamps: true,
+}) 
+
 const BackupModel =  mongoose.model<IBackup>("backup",backupSchema)
 const UpdateModel = mongoose.model<IUpdate>("update", updateSchema)
 const CredsModel = mongoose.model<ICreds>("credential",credsSchema)
+const DeliveryModel = mongoose.model<IDelivery>("delivery",deliverySchema) 
 
 
 
@@ -225,6 +251,18 @@ app.get("/api/secrets",async(req,res)=>{
     res.send(decryptedCredentials)
 
 })
+
+
+//TODO delivery routing
+app.get("/api/delivery", async(req,res)=>{
+    const all_tasks = await DeliveryModel.find({})
+
+    res.status(200).send(all_tasks)
+})
+
+//TODO delivery Create
+//TODO delivery Update
+//TODO delivery Delete
 
 const PORT = 3000;
 app.listen(PORT,()=>{
