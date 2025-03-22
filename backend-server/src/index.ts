@@ -127,7 +127,9 @@ const UpdateModel = mongoose.model<IUpdate>("update", updateSchema)
 const CredsModel = mongoose.model<ICreds>("credential",credsSchema)
 const DeliveryModel = mongoose.model<IDelivery>("delivery",deliverySchema) 
 
-
+app.get("/", (req,res)=>{
+    res.send("Server Ran Properly")
+})
 
 
 app.get("/seed-backup", async (req,res)=>{
@@ -138,9 +140,7 @@ app.get("/seed-backup", async (req,res)=>{
    BackupModel.create(vols).catch(error=>(console.log(error)))
 })
 
-app.get("/", (req,res)=>{
-    res.send("Server Ran Properly")
-})
+
 
 app.get("/api/backup", async (req,res)=>{
     const allBackup = await BackupModel.find({}).sort({ projectName: 'asc' })
@@ -252,14 +252,27 @@ app.get("/api/secrets",async(req,res)=>{
 
 })
 
-
+//Client-Service-Delivery-Backend
 //TODO delivery routing
 app.get("/api/delivery", async(req,res)=>{
     const all_tasks = await DeliveryModel.find({})
-
     res.status(200).send(all_tasks)
 })
 
+app.post("/api/delivery/create", async(req,res)=>{
+    const {client_name, delivery_type, delivery_status, delivery_date, remarks} = req.body;
+    const newDelivery = new DeliveryModel({
+        client_name: client_name,
+        delivery_type: delivery_type,
+        delivery_status: delivery_status,
+        delivery_date: delivery_date,
+        remarks: remarks
+    })
+    await newDelivery.save().then(()=>res.status(201).json({ message: "Delivery saved successfully", success: true })).catch((err)=>res.status(500).json({ error: err.message }));
+})
+
+//TODO: Check create and read from frontend
+//TODO: FIx the file structure
 //TODO delivery Create
 //TODO delivery Update
 //TODO delivery Delete
