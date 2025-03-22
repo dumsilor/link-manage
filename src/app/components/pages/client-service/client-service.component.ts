@@ -5,6 +5,13 @@ import { DeliveryModel } from './client-service.model';
 import { Subscription } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 
+// ###############################################
+// TODO: Client-Service
+// Hide the Full Task if the isCompleted Field is true
+// Add button for update
+
+
+
 @Component({
   selector: 'app-client-service',
   standalone: true,

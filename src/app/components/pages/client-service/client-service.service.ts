@@ -7,6 +7,8 @@ import { Observable } from "rxjs";
     providedIn: 'root'
   })
 
+//TODO: change the URI of the Delivery API after Full development
+
 export class ClientDeliveryService {
 
     constructor(private httpClient: HttpClient){}

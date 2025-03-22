@@ -271,8 +271,8 @@ app.post("/api/delivery/create", async(req,res)=>{
 })
 
 //TODO: Check create and read from frontend
+//TODO: Add another Field to DeliverySchema called "isCompleted: boolean" - remove the table from DB FIRST
 //TODO: FIx the file structure
-//TODO: delivery Create
 //TODO: delivery Update
 //TODO: delivery Delete
 
