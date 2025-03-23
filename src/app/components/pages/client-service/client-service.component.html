@@ -1,5 +1,6 @@
 <div class="container">
     <div class="client_list">
+        <h1>Todays Task</h1>
         <table>
             <thead>
                 <tr>
@@ -12,7 +13,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let client of allDeliveryTasks">
-                    <ng-container  *ngIf="client.delivery_date === today && !isCompleted">
+                    <ng-container  *ngIf="client.delivery_date === today && client.delivery_status !='Completed'">
                         <td>{{client.client_name}}</td>
                         <td>{{client.delivery_status}}</td>
                         <td>{{client.delivery_type}}</td>
@@ -29,15 +30,56 @@
         <form action="" #clientForm="ngForm" (ngSubmit)="addNewClient()">
             <label for="clientName">Client Name</label>
             <input type="text" id="clientName" name="clientName" placeholder="Enter client name" [(ngModel)]="newClient.client_name" #clientName="ngModel" required>
-            <label for="clientName">Client Delivery Status</label>
-            <input type="text" id="clientDeliveryStatus" name="clientDeliveryStatus"  placeholder="Enter delivery status" [(ngModel)]="newClient.delivery_status" #clientDeliveryStatus="ngModel" required>
-            <label for="clientName">Client Delivery Type</label>
-            <input type="text" id="clientDeliveryType" name="clientDeliveryType" placeholder="Enter delivery type" [(ngModel)]="newClient.delivery_type" #clientDeliveryType="ngModel" required>
-            <label for="clientName">Client Delivery Date</label>
+            <div class="form-control">
+                <label for="clientDeliveryStatus">Client Delivery Status</label>
+                <select type="text" id="clientDeliveryStatus" name="clientDeliveryStatus"  placeholder="Enter delivery status" [(ngModel)]="newClient.delivery_status" #clientDeliveryStatus="ngModel" required>
+                    <option value="Pending" id="pending">Pending</option>
+                    <option value="On Going" id="onGoing">On Going</option>
+                    <option value="Completed" id="completed">Completed</option>
+                </select>
+            </div>
+            <div class="form-control" id="type">
+                <label for="clientDeliveryType">Client Delivery Type</label>
+                <select type="text" id="clientDeliveryType" name="clientDeliveryType" placeholder="Enter delivery type" [(ngModel)]="newClient.delivery_type" #clientDeliveryType="ngModel" required>
+                    <option value="test">Test</option>
+                    <option value="termination">Termination</option>
+                    <option value="remove">Remove VM</option>
+                </select>
+            </div>
+            <label for="clientDeliveryDate">Client Delivery Date</label>
             <input type="date" id="clientDeliveryDate" name="clientDeliveryDate"  placeholder="Enter delivery date" [(ngModel)]="newClient.delivery_date" #clientDeliveryDate="ngModel" required>
+            <label for="remarks">Remarks</label>
+            <input type="text" id="remarks" name="remarks"  placeholder="Enter Remarks" [(ngModel)]="newClient.remarks" #remarks="ngModel" required>
             <button type="submit" [disabled]="clientForm.invalid">Add</button>
         </form>
     </div>
+    <div class="pending-cotainer">
+        <div class="client_list">
+            <h1>Pending Task</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Client Name</th>
+                        <th>Delivery Status</th>
+                        <th>Delivery Type</th>
+                        <th>Delivery Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let client of allDeliveryTasks">
+                        <ng-container  *ngIf="client.delivery_date < today">
+                            <td>{{client.client_name}}</td>
+                            <td>{{client.delivery_status}}</td>
+                            <td>{{client.delivery_type}}</td>
+                            <td>{{client.delivery_date }}</td>
+                            <td>
+                                <button (click)="completedTask()">Completed</button>
+                            </td>
+                        </ng-container>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
-<!-- TODO: ADD Remarks Input -->
- <!-- TODO: Add Option Selection Pattrn in Status and type Input -->

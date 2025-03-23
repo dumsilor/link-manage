@@ -31,7 +31,7 @@
                     </div>
                 </div>
             </div>
-            <div class="delivery">
+            <div class="shiftTask">
                 <div class="dropdown">
                     <button class="dropbtn">Shift Tasks</button>
                     <div class="dropdown-content">
@@ -41,11 +41,21 @@
                     </div>
                 </div>
             </div>
-            <div class="delivery">
+            <div class="clientDocument">
                 <div class="dropdown">
                     <button class="dropbtn">Client Documents</button>
                     <div class="dropdown-content">
                         <ng-container *ngFor="let link of client_doc_links">
+                            <a href={{link.url}} target="_blank">{{ link.name }}</a>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+            <div class="internalDocument">
+                <div class="dropdown">
+                    <button class="dropbtn">Documents</button>
+                    <div class="dropdown-content">
+                        <ng-container *ngFor="let link of document_links">
                             <a href={{link.url}} target="_blank">{{ link.name }}</a>
                         </ng-container>
                     </div>

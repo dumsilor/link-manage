@@ -45,9 +45,7 @@ export class ClientServiceComponent implements OnInit, OnDestroy {
     // }
     this.allDeliverySubscription = this.clientDeliveryService.allDelivery().subscribe(data=>{
       this.allDeliveryTasks = data;
-      console.log(data[0].delivery_date)
     })
-    console.log(this.today)
   }
 
   ngOnDestroy(): void {
@@ -55,7 +53,7 @@ export class ClientServiceComponent implements OnInit, OnDestroy {
   }
 
   completedTask() {
-    this.isCompleted = true;
+    
   }
 
   addNewClient() {

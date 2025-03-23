@@ -3,6 +3,9 @@ import { monitoring_tools_links, service_links, tools_links, shift_tasks, client
 import { navLink } from '../../../shared/model/nav-link.model';
 import { CommonModule } from '@angular/common';
 
+//TODO10: Create a document list in data-ts file
+
+
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -16,6 +19,7 @@ export class DashboardComponent implements OnInit {
   tools_links!: navLink[];
   shift_tasks_links!: navLink[];
   client_doc_links!: navLink[];
+  document_links!: navLink[];
   
 
   ngOnInit(): void {
