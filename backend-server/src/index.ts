@@ -286,7 +286,6 @@ app.put("/api/delivery/update/:id", async(req, res)=> {
 })
 
 //TODO: FIx the file structure
-//TODO: delivery Update
 //TODO: delivery Delete
 
 const PORT = 3000;

@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { DeliveryModel } from "./client-service.model";
 import { Observable } from "rxjs";
+import { DELIVERY_CREATE_URL, DELIVERY_UPDATE_URL, DELIVERY_URL } from "../../../shared/constants/backend";
 
 @Injectable({
     providedIn: 'root'
@@ -14,15 +15,15 @@ export class ClientDeliveryService {
     constructor(private httpClient: HttpClient){}
 
     allDelivery(): Observable<DeliveryModel[]> {
-        return this.httpClient.get<DeliveryModel[]>("http://localhost:3000/api/delivery")
+        return this.httpClient.get<DeliveryModel[]>(DELIVERY_URL)
     }
 
     addNewClientToDB(newClient: DeliveryModel){
-        return this.httpClient.post("http://localhost:3000/api/delivery/create", newClient)
+        return this.httpClient.post(DELIVERY_CREATE_URL, newClient)
     }
 
     updateStatus(newStatus: DeliveryModel) {
-        return this.httpClient.put(`http://localhost:3000/api/delivery/update/${newStatus._id}`, newStatus, {responseType: 'text'})
+        return this.httpClient.put(`${DELIVERY_UPDATE_URL}/${newStatus._id}`, newStatus, {responseType: 'text'})
     }
 
 

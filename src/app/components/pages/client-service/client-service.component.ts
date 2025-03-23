@@ -36,13 +36,6 @@ export class ClientServiceComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
-    // if(this.data.delivery_date === this.today) {
-    //   console.log("Date Matched")
-    // } else {
-    //   console.log("Date does not matched")
-    //   console.log(this.data.delivery_date)
-    //   console.log(this.today)
-    // }
     this.allDeliverySubscription = this.clientDeliveryService.allDelivery().subscribe(data=>{
       this.allDeliveryTasks = data;
     })
@@ -54,7 +47,6 @@ export class ClientServiceComponent implements OnInit, OnDestroy {
 
   completedTask(client: DeliveryModel): void {
     client.delivery_status = "Completed";
-    //TODO11: When Completed is pressed send request to backend to change delivery Status to completed
     this.clientDeliveryService.updateStatus(client).subscribe(response=>{
       console.log(response)
       this.clientDeliveryService.allDelivery().subscribe(data=>{
