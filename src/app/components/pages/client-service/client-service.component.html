@@ -1,31 +1,4 @@
 <div class="container">
-    <div class="client_list">
-        <h1>Todays Task</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>Client Name</th>
-                    <th>Delivery Status</th>
-                    <th>Delivery Type</th>
-                    <th>Delivery Date</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let client of allDeliveryTasks">
-                    <ng-container  *ngIf="client.delivery_date === today && client.delivery_status !='Completed'">
-                        <td>{{client.client_name}}</td>
-                        <td>{{client.delivery_status}}</td>
-                        <td>{{client.delivery_type}}</td>
-                        <td>{{client.delivery_date }}</td>
-                        <td>
-                            <button (click)="completedTask()">Completed</button>
-                        </td>
-                    </ng-container>
-                </tr>
-            </tbody>
-        </table>
-    </div>
     <div class="form-container">
         <form action="" #clientForm="ngForm" (ngSubmit)="addNewClient()">
             <label for="clientName">Client Name</label>
@@ -53,6 +26,34 @@
             <button type="submit" [disabled]="clientForm.invalid">Add</button>
         </form>
     </div>
+    <div class="client_list today-task">
+        <h1>Todays Task</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Client Name</th>
+                    <th>Delivery Status</th>
+                    <th>Delivery Type</th>
+                    <th>Delivery Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let client of allDeliveryTasks">
+                    <ng-container  *ngIf="client.delivery_date === today && client.delivery_status !='Completed'">
+                        <td>{{client.client_name}}</td>
+                        <td>{{client.delivery_status}}</td>
+                        <td>{{client.delivery_type}}</td>
+                        <td>{{client.delivery_date }}</td>
+                        <td>
+                            <button (click)="completedTask(client)">Completed</button>
+                        </td>
+                    </ng-container>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
     <div class="pending-cotainer">
         <div class="client_list">
             <h1>Pending Task</h1>
@@ -68,13 +69,13 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let client of allDeliveryTasks">
-                        <ng-container  *ngIf="client.delivery_date < today">
+                        <ng-container  *ngIf="client.delivery_date < today && client.delivery_status !='Completed'">
                             <td>{{client.client_name}}</td>
                             <td>{{client.delivery_status}}</td>
                             <td>{{client.delivery_type}}</td>
                             <td>{{client.delivery_date }}</td>
                             <td>
-                                <button (click)="completedTask()">Completed</button>
+                                <button (click)="completedTask(client)">Completed</button>
                             </td>
                         </ng-container>
                     </tr>

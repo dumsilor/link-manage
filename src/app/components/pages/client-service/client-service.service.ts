@@ -20,4 +20,10 @@ export class ClientDeliveryService {
     addNewClientToDB(newClient: DeliveryModel){
         return this.httpClient.post("http://localhost:3000/api/delivery/create", newClient)
     }
+
+    updateStatus(newStatus: DeliveryModel) {
+        return this.httpClient.put(`http://localhost:3000/api/delivery/update/${newStatus._id}`, newStatus, {responseType: 'text'})
+    }
+
+
 }

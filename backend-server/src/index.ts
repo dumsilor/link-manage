@@ -270,8 +270,22 @@ app.post("/api/delivery/create", async(req,res)=>{
     await newDelivery.save().then(()=>res.status(201).json({ message: "Delivery saved successfully", success: true })).catch((err)=>res.status(500).json({ error: err.message }));
 })
 
-//TODO: Check create and read from frontend
-//TODO: Add another Field to DeliverySchema called "isCompleted: boolean" - remove the table from DB FIRST
+app.put("/api/delivery/update/:id", async(req, res)=> {
+    const filter = { _id : req.params.id }
+    const update = { delivery_status : req.body.delivery_status }
+    console.log(update)
+    if (!req.body.delivery_status) {
+        res.status(404).send("Delivery status is required")
+    }
+
+    const updateClient = await DeliveryModel.findOneAndUpdate(filter,update)
+
+    if (!updateClient) {
+        res.send(404).send("Client not Found")
+    }
+    res.status(200).send("Delivery Type Updated")
+})
+
 //TODO: FIx the file structure
 //TODO: delivery Update
 //TODO: delivery Delete

@@ -52,17 +52,24 @@ export class ClientServiceComponent implements OnInit, OnDestroy {
     this.allDeliverySubscription.unsubscribe();
   }
 
-  completedTask() {
-    
-  }
-
-  addNewClient() {
-    this.clientDeliveryService.addNewClientToDB(this.newClient).subscribe(res=>{
-      console.log(res);
-      this.newClient = new DeliveryModel();
+  completedTask(client: DeliveryModel): void {
+    client.delivery_status = "Completed";
+    //TODO11: When Completed is pressed send request to backend to change delivery Status to completed
+    this.clientDeliveryService.updateStatus(client).subscribe(response=>{
+      console.log(response)
       this.clientDeliveryService.allDelivery().subscribe(data=>{
         this.allDeliveryTasks = data;
       })
+    })
+  }
+
+  addNewClient() {
+    this.clientDeliveryService.addNewClientToDB(this.newClient).subscribe(response=>{
+      console.log("response", response);
+      this.newClient = new DeliveryModel();
+      this.clientDeliveryService.allDelivery().subscribe(data=>{
+        this.allDeliveryTasks = data;
+      },error=>{console.log("error", error)})
     })
   }
 }

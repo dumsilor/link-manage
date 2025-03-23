@@ -132,3 +132,10 @@ export const service_links: navLink[] =[
       "url" : "https://s3.brilliant.com.bd/bucket-1-ee86738d/client-doc/friendship-diagram.html"
     }
   ]
+
+  export const documents = [
+    {
+      "name": "Test",
+      "url" : "Test"
+    }
+  ]
