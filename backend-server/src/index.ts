@@ -272,8 +272,7 @@ app.post("/api/delivery/create", async(req,res)=>{
 
 app.put("/api/delivery/update/:id", async(req, res)=> {
     const filter = { _id : req.params.id }
-    const update = { delivery_status : req.body.delivery_status }
-    console.log(update)
+    const update = { ...req.body }
     if (!req.body.delivery_status) {
         res.status(404).send("Delivery status is required")
     }
