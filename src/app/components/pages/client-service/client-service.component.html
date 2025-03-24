@@ -1,8 +1,10 @@
 <div class="container">
     <div class="form-container">
         <form action="" #clientForm="ngForm" (ngSubmit)="addNewClient()">
-            <label for="clientName">Client Name</label>
-            <input type="text" id="clientName" name="clientName" placeholder="Enter client name" [(ngModel)]="newClient.client_name" #clientName="ngModel" required>
+            <div class="form-control">
+                <label for="clientName">Client Name</label>
+                <input type="text" id="clientName" name="clientName" placeholder="Enter client name" [(ngModel)]="newClient.client_name" #clientName="ngModel" required>
+            </div>
             <div class="form-control">
                 <label for="clientDeliveryStatus">Client Delivery Status</label>
                 <select type="text" id="clientDeliveryStatus" name="clientDeliveryStatus"  placeholder="Enter delivery status" [(ngModel)]="newClient.delivery_status" #clientDeliveryStatus="ngModel" required>
@@ -14,27 +16,35 @@
             <div class="form-control" id="type">
                 <label for="clientDeliveryType">Client Delivery Type</label>
                 <select type="text" id="clientDeliveryType" name="clientDeliveryType" placeholder="Enter delivery type" [(ngModel)]="newClient.delivery_type" #clientDeliveryType="ngModel" required>
-                    <option value="test">Test</option>
+                    <option value="remove">Delivery</option>
+                    <option value="test">Test - End</option>
                     <option value="termination">Termination</option>
                     <option value="remove">Remove VM</option>
                 </select>
             </div>
-            <label for="clientDeliveryDate">Client Delivery Date</label>
-            <input type="date" id="clientDeliveryDate" name="clientDeliveryDate"  placeholder="Enter delivery date" [(ngModel)]="newClient.delivery_date" #clientDeliveryDate="ngModel" required>
-            <label for="remarks">Remarks</label>
-            <input type="text" id="remarks" name="remarks"  placeholder="Enter Remarks" [(ngModel)]="newClient.remarks" #remarks="ngModel" required>
-            <button type="submit" [disabled]="clientForm.invalid">Add</button>
+            <div class="form-control">
+                <label for="clientDeliveryDate">Client Delivery Date</label>
+                <input type="date" id="clientDeliveryDate" name="clientDeliveryDate"  placeholder="Enter delivery date" [(ngModel)]="newClient.delivery_date" #clientDeliveryDate="ngModel" required>
+            </div>
+            <div class="from-control">
+                <label for="remarks">Remarks</label>
+                <input type="text" id="remarks" name="remarks"  placeholder="Enter Remarks" [(ngModel)]="newClient.remarks" #remarks="ngModel" required>
+            </div>
+            <div class="form-control">
+                <button type="submit" [disabled]="clientForm.invalid">Add</button>
+            </div>
         </form>
     </div>
     <div class="client_list today-task">
         <h1>Todays Task</h1>
-        <table>
+        <!-- <table>
             <thead>
                 <tr>
                     <th>Client Name</th>
                     <th>Delivery Status</th>
                     <th>Delivery Type</th>
                     <th>Delivery Date</th>
+                    <th>Remarks</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -45,17 +55,23 @@
                         <td>{{client.delivery_status}}</td>
                         <td>{{client.delivery_type}}</td>
                         <td>{{client.delivery_date }}</td>
+                        <td>{{ client.remarks }}</td>
                         <td>
                             <button (click)="completedTask(client)">Completed</button>
                         </td>
                     </ng-container>
                 </tr>
             </tbody>
-        </table>
+        </table> -->
+        <ag-grid-angular
+        class="task-table"
+        [rowData]="filteredDeliveryTask"
+        [columnDefs]="colDefs" />
     </div>
     
     <div class="pending-cotainer">
-        <div class="client_list">
+        <h1>Pending Tasks</h1>
+   <!-- <div class="client_list">
             <h1>Pending Task</h1>
             <table>
                 <thead>
@@ -77,10 +93,14 @@
                             <td>
                                 <button (click)="completedTask(client)">Completed</button>
                             </td>
-                        </ng-container>
-                    </tr>
+                        </ng-container> -->
+                    <!-- </tr>
                 </tbody>
-            </table>
-        </div>
+            </table> -->
+            <ag-grid-angular
+            class="task-table"
+            [rowData]="filteredPreviousTasks"
+            [columnDefs]="colDefs" 
+             />
     </div>
 </div>

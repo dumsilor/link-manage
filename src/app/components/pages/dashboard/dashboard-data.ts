@@ -75,6 +75,14 @@ export const service_links: navLink[] =[
     {
         "name" : "FortiAnalyzer",
         "url" : "https://118.67.209.115/p/login/"
+    },
+    {
+      "name" : "Observium",
+      "url" : "http://observium.brilliant.com.bd/",
+    },
+    {
+      "name" : "smokeping",
+      "url" : "http://103.209.42.218:10180/smokeping/"
     }
   ]
 

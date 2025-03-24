@@ -1,2 +1,55 @@
-// TODO: Style the Input fields
-// TODO: Style the Table
+// TODO1: Style the Input fields
+// TODO2: Style the Table
+@import "../../../shared/scss/colors.scss";
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 5rem;
+    padding-left: 15rem;
+    position: relative;
+}
+
+.container div {
+    padding-top: 0.7rem;
+}
+
+// form-container css
+.form-container {
+    position: absolute;
+    left: 3rem;
+    top: 5rem;
+}
+
+form, form div {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-control {
+    margin-bottom: 1rem;
+}
+
+input, select {
+    border-radius: 10px;
+}
+
+button {
+    margin-top: 0.5rem;
+}
+
+// table-container css
+.task-table {
+    height: 300px;
+    width: 70rem;
+}
+
+h1 {
+    text-align: center;
+}
+
+.pending-cotainer h1 {
+    color: $danger;
+}

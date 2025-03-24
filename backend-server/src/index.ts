@@ -285,8 +285,8 @@ app.put("/api/delivery/update/:id", async(req, res)=> {
     res.status(200).send("Delivery Type Updated")
 })
 
-//TODO: FIx the file structure
-//TODO: delivery Delete
+//TODO1: FIx the file structure
+//TODO2: delivery Delete
 
 const PORT = 3000;
 app.listen(PORT,()=>{

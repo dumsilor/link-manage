@@ -8,7 +8,6 @@ import { DELIVERY_CREATE_URL, DELIVERY_UPDATE_URL, DELIVERY_URL } from "../../..
     providedIn: 'root'
   })
 
-//TODO: change the URI of the Delivery API after Full development
 
 export class ClientDeliveryService {
 
