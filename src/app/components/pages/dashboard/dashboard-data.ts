@@ -114,6 +114,10 @@ export const service_links: navLink[] =[
     {
       "name" : "IP Calculator",
       "url" : "https://jodies.de/ipcalc"
+    },
+    {
+      "name" : "Cloud-Jenkins",
+      "url" : "http://103.209.42.218:8580"
     }
 
   ]
