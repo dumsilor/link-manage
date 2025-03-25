@@ -1,6 +1,5 @@
-// TODO1: Style the Input fields
-// TODO2: Style the Table
 @import "../../../shared/scss/colors.scss";
+@import url('https://fonts.googleapis.com/css2?family=Prompt&display=swap');
 
 .container {
     display: flex;
@@ -10,6 +9,10 @@
     padding-top: 5rem;
     padding-left: 15rem;
     position: relative;
+    font-family: "Prompt", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: $navcolor;
 }
 
 .container div {
@@ -34,10 +37,38 @@ form, form div {
 
 input, select {
     border-radius: 10px;
+    height: 2rem;
+    border: none;
+    transition: border-bottom 0.1s ease-out;
+}
+
+label {
+    padding-bottom: 0.5rem;
+}
+
+input:focus, select:focus{
+    outline: none;
+    border-bottom: solid 4px $danger;
 }
 
 button {
-    margin-top: 0.5rem;
+    margin-top: 1rem;
+    height: 2rem;
+    border-radius: 1rem;
+    border: none;
+    background-color: $navcolor;
+    color: $nav-text-color;
+    font-weight: 300;
+}
+
+button:hover {
+    background-color: rgba($navcolor,0.5);
+    cursor: pointer;
+}
+
+button:disabled {
+    background-color: rgba($navcolor,0.2);
+    cursor: not-allowed;
 }
 
 // table-container css
@@ -50,6 +81,15 @@ h1 {
     text-align: center;
 }
 
-.pending-cotainer h1 {
+.pending-container h1 {
     color: $danger;
+}
+
+@media screen and (max-width: 1300px) {
+    .form-container {
+        position: initial;
+    }
+    .container {
+        padding-left: 0;
+    }
 }

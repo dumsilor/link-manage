@@ -1,5 +1,6 @@
 <div class="container">
     <div class="form-container">
+        <h2>Enter New Task</h2>
         <form action="" #clientForm="ngForm" (ngSubmit)="addNewClient()">
             <div class="form-control">
                 <label for="clientName">Client Name</label>
@@ -69,7 +70,7 @@
         [columnDefs]="colDefs" />
     </div>
     
-    <div class="pending-cotainer">
+    <div class="pending-container">
         <h1>Pending Tasks</h1>
    <!-- <div class="client_list">
             <h1>Pending Task</h1>
