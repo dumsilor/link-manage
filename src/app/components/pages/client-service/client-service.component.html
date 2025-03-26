@@ -17,7 +17,8 @@
             <div class="form-control" id="type">
                 <label for="clientDeliveryType">Client Delivery Type</label>
                 <select type="text" id="clientDeliveryType" name="clientDeliveryType" placeholder="Enter delivery type" [(ngModel)]="newClient.delivery_type" #clientDeliveryType="ngModel" required>
-                    <option value="remove">Delivery</option>
+                    <option value="block">Block Client</option>
+                    <option value="delivery">Delivery</option>
                     <option value="test">Test - End</option>
                     <option value="termination">Termination</option>
                     <option value="remove">Remove VM</option>
