@@ -118,12 +118,16 @@ export const service_links: navLink[] =[
     {
       "name" : "Cloud-Jenkins",
       "url" : "http://103.209.42.218:8580"
+    },
+    {
+      "name" : "IP Locate",
+      "url" : "http://103.209.42.218:12181/locate"
     }
 
   ]
 
 
-  export const shift_tasks = [
+  export const shift_tasks: navLink[] = [
     {
       "name" : "Client Delivery",
       "url" : "http://118.67.213.117:12180/delivery" 
