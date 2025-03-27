@@ -141,7 +141,7 @@ export const service_links: navLink[] =[
   export const client_docs = [
     {
       "name": "Friendship Diagram",
-      "url" : "https://s3.brilliant.com.bd/bucket-1-ee86738d/client-doc/friendship-diagram.html"
+      "url" : "https://s3.brilliant.com.bd/bucket-1-ee86738d/client-doc/friendship-ngo/friendship-diagram.html"
     }
   ]
 
