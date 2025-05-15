@@ -151,7 +151,7 @@ export const service_links: navLink[] =[
 
   export const documents = [
     {
-      "name": "Test",
-      "url" : "Test"
+      "name": "IP-Phone Ext",
+      "url" : "https://s3.brilliant.com.bd/bucket-1-ee86738d/office-doc/ip-extension.pdf"
     }
   ]

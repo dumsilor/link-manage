@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { monitoring_tools_links, service_links, tools_links, shift_tasks, client_docs } from './dashboard-data';
+import { monitoring_tools_links, service_links, tools_links, shift_tasks, client_docs, documents } from './dashboard-data';
 import { navLink } from '../../../shared/model/nav-link.model';
 import { CommonModule } from '@angular/common';
 
@@ -28,5 +28,6 @@ export class DashboardComponent implements OnInit {
     this.tools_links = tools_links;
     this.shift_tasks_links = shift_tasks;
     this.client_doc_links = client_docs;
+    this.document_links = documents;
   }
 }
